@@ -1,0 +1,464 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Void.Core</name>
+  </assembly>
+  <members>
+    <member name="T:Void.Linq.Number">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Number.By(System.Int32,System.Int32)">
+      <summary>
+            generates a sequence of integers beginning with <paramref name="me" /> where each element is 
+            <paramref name="stepsize" /> larger than the previous
+            </summary>
+    </member>
+    <member name="M:Void.Linq.Number.Through(System.Int32,System.Int32)">
+      <summary>
+            generates a sequence of integers beginning with <paramref name="me" /> where each element is 
+            the previous element plus one that includes the upper bound <paramref name="guard" /> cref="guard"/&gt;
+            </summary>
+    </member>
+    <member name="M:Void.Linq.Number.Until(System.Int32,System.Int32)">
+      <summary>
+            generates a sequence of integers beginning with <paramref name="me" /> where each element is 
+            the previous element plus one that excludes the upper bound <paramref name="guard" /></summary>
+    </member>
+    <member name="M:Void.Linq.Number.Through(Void.Linq.Number.IterationSpecification,System.Int32)">
+      <summary>
+            Returns as sequence that will yield all values to and including <paramref name="guard" /></summary>
+    </member>
+    <member name="M:Void.Linq.Number.Until(Void.Linq.Number.IterationSpecification,System.Int32)">
+      <summary>
+            Returns as sequence that will yield all values to but excluding <paramref name="guard" /></summary>
+    </member>
+    <member name="T:Void.Linq.Number.IterationSpecification">
+      <summary>
+            Represents a sequence first yielding <see cref="F:Void.Linq.Number.IterationSpecification.StartValue" /> and then infinitely yielding the last value plus <see cref="F:Void.Linq.Number.IterationSpecification.StepSize" /></summary>
+    </member>
+    <member name="F:Void.Linq.Number.IterationSpecification.StartValue">
+      <summary />
+    </member>
+    <member name="F:Void.Linq.Number.IterationSpecification.StepSize">
+      <summary />
+    </member>
+    <member name="T:Void.Hierarchies.IAutoHierarchy`1">
+      <summary>
+            Represents a hierarchy in which the instances in the hierarchy do not themselves 
+            implement <see cref="T:Void.Hierarchies.IHierarchy`1" />.
+            
+            <example>
+            For instance you could use <see cref="M:Void.Hierarchies.HierarchyExtensions.AsHierarchy``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}})" /> like this:
+            <code>
+                directoryName.AsHierarchy&lt;
+            </code></example></summary>
+    </member>
+    <member name="T:Void.Hierarchies.IHierarchy`1">
+      <summary>
+             Provides a minimal interface for representing a data type which 
+             is hierarchical in the form that each instance has a collection 
+             of other instances.
+             
+             Implementing this interface gives access to all the extension methods 
+             implemented upon it which is the main purpose of doing so.
+             
+             <example>
+             A simplistic example might look like this:
+             <code>
+            class Person : IHierarchy&lt;Person&gt;
+            {
+                .....
+                private IList&lt;Person&gt; _children = new List&lt;Person&gt;();
+                public IEnumerable&lt;Person&gt; Children { get { return _children; } }
+            }
+             </code></example>
+             
+             
+             An alternative to implementing this interface is to use <see cref="M:Void.Hierarchies.HierarchyExtensions.AsHierarchy``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}})" /></summary>
+    </member>
+    <member name="P:Void.Hierarchies.IHierarchy`1.Children">
+      <summary>
+            Returns the collection direct descendants of this node.
+            </summary>
+    </member>
+    <member name="T:Void.Wrappers.IWrapper`1">
+      <summary>
+            Represents the generic concept of a type that extends another type by containing a value of the other type.
+            </summary>
+    </member>
+    <member name="P:Void.Wrappers.IWrapper`1.Wrapped">
+      <summary>The wrapped value.</summary>
+    </member>
+    <member name="T:Void.Hierarchies.HierarchyExtensions">
+      <summary>
+            Provides extension methods for working with hierarchical data.
+            </summary>
+    </member>
+    <member name="M:Void.Hierarchies.HierarchyExtensions.AsHierarchy``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+      <summary>
+            Returns an <see cref="T:Void.Hierarchies.IAutoHierarchy`1" /> where <see cref="P:Void.Wrappers.IWrapper`1.Wrapped" /> is <paramref name="me" /> and
+            <see cref="P:Void.Hierarchies.IHierarchy`1.Children" /> is implemented via delegation to <paramref name="childGetter" /></summary>
+    </member>
+    <member name="M:Void.Hierarchies.HierarchyExtensions.Flatten``1(``0)">
+      <summary>
+            Returns <paramref name="root" /> and all the objects in the hierarchy
+            below <paramref name="root" /> flattened into a sequence
+            </summary>
+    </member>
+    <member name="M:Void.Hierarchies.HierarchyExtensions.Unwrap``1(System.Collections.Generic.IEnumerable{Void.Hierarchies.IAutoHierarchy{``0}})">
+      <summary>
+            Given a sequence of <see cref="T:Void.Hierarchies.IAutoHierarchy`1" /> returns a sequence containing the wrapped T values.
+            </summary>
+    </member>
+    <member name="T:Void.Linq.Iteration">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Iteration.ForEach``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+      <summary>
+            Executes <paramref name="action" /> for each element in the sequence <paramref name="source" />.
+            </summary>
+    </member>
+    <member name="M:Void.Linq.Iteration.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+      <summary>
+            Executes <paramref name="action" /> for each element in the sequence <paramref name="source" />.
+            </summary>
+    </member>
+    <member name="M:Void.Linq.Iteration.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+      <summary>
+            Executes <paramref name="action" /> for each element in the sequence <paramref name="source" />.
+            </summary>
+    </member>
+    <member name="T:Void.IO.DirectoryExtensions">
+      <summary />
+    </member>
+    <member name="M:Void.IO.DirectoryExtensions.AsDirectory(System.String)">
+      <summary>
+            Called on <paramref name="path" /> return a DirectoryInfo instance 
+            pointed at that path.
+            </summary>
+      <param name="path" />
+      <returns />
+    </member>
+    <member name="M:Void.IO.DirectoryExtensions.Size(System.IO.DirectoryInfo)">
+      <summary>
+            Returns the size of the directory.
+            </summary>
+    </member>
+    <member name="M:Void.IO.DirectoryExtensions.DeleteRecursive(System.IO.DirectoryInfo)">
+      <summary>
+            Recursively deletes everything in a airectory and the directory itself.
+            
+            A more intuitive alias for <see cref="M:System.IO.DirectoryInfo.Delete(System.Boolean)" />
+            called with <paramref name="me" /> and true.
+            </summary>
+      <param name="me" />
+    </member>
+    <member name="T:Void.Linq.SimpleIndexing">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Second``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the second element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Third``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the third element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Fourth``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the fourth element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Fifth``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the fifth element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Sixth``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the sixth element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Seventh``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the seventh element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Eighth``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the eight element in the IEnumerable</summary>
+    </member>
+    <member name="M:Void.Linq.SimpleIndexing.Ninth``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>Returns the ninth element in the IEnumerable</summary>
+    </member>
+    <member name="T:Void.Linq.LinqExtensions">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.Let``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+      <summary>
+            Binds <paramref name="me" /> to the parameter in <paramref name="selector" />.
+            Enables you to perform operations that require you to alias the sequence being 
+            manipulated without having to create temporary variables.
+            </summary>
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+      <summary>
+            Adds <paramref name="instances" /> to the end of <paramref name="source" /></summary>
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.None``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+      <summary>
+        <para>The inversion of <see cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />.</para>
+        <para>Returns true if <paramref name="me" /> contains no elements matching <paramref name="predicate" /></para>
+      </summary>
+      <returns>true if <paramref name="me" /> contains no objects matching <paramref name="predicate" />. Otherwise false.</returns>
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.None``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>
+        <para>The inversion of <see cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})" /> .</para>
+        <para>Returns true if <paramref name="me" /> contains no elements.</para>
+      </summary>
+      <returns>true if <paramref name="me" /> contains no objects. Otherwise false.</returns>
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.ChopIntoSizesOf``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+      <summary>
+            Chops an IEnumerable up into <paramref name="size" /> sized chunks.
+            </summary>
+    </member>
+    <member name="M:Void.Linq.LinqExtensions.Flatten``2(System.Collections.Generic.IEnumerable{``0})">
+      <summary>
+            Acting on an <see cref="T:System.Collections.Generic.IEnumerable`1" /><paramref name="me" /> where T is an <see cref="T:System.Collections.Generic.IEnumerable`1" />
+            returns an <see cref="T:System.Collections.Generic.IEnumerable`1" /> aggregating all the TChild instances
+            
+            Using SelectMany(x=&gt;x) is ugly and unintuitive.
+            This method provides an intuitively named alternative.
+            </summary>
+      <typeparam name="T">A type implementing <see cref="T:System.Collections.Generic.IEnumerable`1" /></typeparam>
+      <typeparam name="TChild">The type contained in the nested enumerables.</typeparam>
+      <param name="me">the collection to act upon</param>
+      <returns>All the objects in all the nested collections </returns>
+    </member>
+    <member name="T:Void.Linq.Filter">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Filter.Where``1(System.Collections.Generic.IEnumerable{``0},Void.Linq.IFilter{``0})">
+      <summary>
+            Returns an IEnumerable containing only those items in <paramref name="source" /> 
+            which match all the predicates in <paramref name="filter" /></summary>
+    </member>
+    <member name="M:Void.Linq.Filter.Where``1(System.Linq.IQueryable{``0},Void.Linq.IFilter{``0})">
+      <summary>
+            Returns an IEnumerable containing only those items in <paramref name="source" /> 
+            which match all the criteria in <paramref name="filter" /></summary>
+    </member>
+    <member name="M:Void.Linq.Filter.Matches``1(Void.Linq.IFilter{``0},``0)">
+      <summary>
+            returns true if <paramref name="item" /> matches all the predicates in <paramref name="filter" /></summary>
+    </member>
+    <member name="T:Void.EnumExtensions">
+      <summary />
+    </member>
+    <member name="M:Void.EnumExtensions.HasFlag(System.Enum,System.Enum)">
+      <summary>
+            True if <paramref name="value" /> contains the bit flag <paramref name="flag" /></summary>
+      <param name="value" />
+      <param name="flag" />
+      <returns />
+    </member>
+    <member name="T:Void.Linq.ObjectExtensions">
+      <summary>
+             Methods useful for any type when used in a Linq context
+            </summary>
+    </member>
+    <member name="M:Void.Linq.ObjectExtensions.Repeat``1(``0,System.Int32)">
+      <summary>
+            Returns <paramref name="me" /> repeated <paramref name="times" /> times.
+            </summary>
+    </member>
+    <member name="T:Void.Wrappers.GenericWrapper`1">
+      <summary>
+            The most simple imaginable implementation of <see cref="T:Void.Wrappers.IWrapper`1" /></summary>
+    </member>
+    <member name="M:Void.Wrappers.GenericWrapper`1.#ctor(`0)">
+      <summary>Constructs an instance where <see cref="P:Void.Wrappers.GenericWrapper`1.Wrapped" /> is <paramref name="wrapped" /></summary>
+    </member>
+    <member name="P:Void.Wrappers.GenericWrapper`1.Wrapped">
+      <summary>Implements: <see cref="P:Void.Wrappers.IWrapper`1.Wrapped" /></summary>
+    </member>
+    <member name="T:Void.ObjectExtensions">
+      <summary>
+            Contains extensions methods that are useful to any <see cref="T:System.Object" /></summary>
+    </member>
+    <member name="M:Void.ObjectExtensions.Transform``2(``0,System.Func{``0,``1})">
+      <summary>
+            Applies <paramref name="transformation" /> to the object and returns the result.
+            combined with <see cref="M:Void.ObjectExtensions.Do``1(``0,System.Action{``0})" /> this allows for writing code that would usually 
+            be a series of nested functioncalls, or consecutive lines action on temporary 
+            variables created by previous lines, to be converted into sequential operations
+            where each operation acts upon the result of the previous operation.
+            <example><para /><para>Nested calls:</para><code>
+            Op4(Op3(Op2(Op1(start))))
+            </code>   
+            
+            Using temporary variables.
+            <code>
+            var temp1 = Op1(start);
+            var temp2 = Op2(temp1);
+            var temp3 = Op3(temp2);
+            Op4(temp3);
+            </code>
+            
+            Using <see cref="M:Void.ObjectExtensions.Transform``2(``0,System.Func{``0,``1})" /> and <see cref="M:Void.ObjectExtensions.Do``1(``0,System.Action{``0})" />.
+            <code>
+            start.Transform(Op1).Transform(Op2).Transform(Op3).Do(Op4);
+            </code></example></summary>
+      <typeparam name="TSource">The type of the object being transformed.</typeparam>
+      <typeparam name="TReturn">The type of the result of the transformation.</typeparam>
+      <param name="me">The object being transformed</param>
+      <param name="transformation">The transformation to be performed</param>
+      <returns />
+    </member>
+    <member name="M:Void.ObjectExtensions.Do``1(``0,System.Action{``0})">
+      <summary>
+            Performes the <paramref name="action" /> using <paramref name="me" /> as the parameter.
+            
+            see <see cref="M:Void.ObjectExtensions.Transform``2(``0,System.Func{``0,``1})" /> for usage.
+            </summary>
+      <typeparam name="T">the type of the object being acted upon</typeparam>
+      <param name="me">the object haveing something done to it</param>
+      <param name="action">what should be done to the object</param>
+    </member>
+    <member name="T:Void.Linq.Hierarchy">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Hierarchy.FlattenHierarchy``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+      <summary>
+            Flattens a hierarchical structure of <typeparamref name="TSource" /> objects into an <see cref="T:System.Collections.Generic.IEnumerable`1" /></summary>
+      <typeparam name="TSource">The type of the objects in the hierarchy.</typeparam>
+      <param name="source">The source collection.</param>
+      <param name="childrenSelector">A function that given a <typeparamref name="TSource" /> returns all the immediate descendent.</param>
+      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> containing all the <typeparamref name="TSource" /> instances in the <paramref name="source" />.</returns>
+    </member>
+    <member name="T:Void.IPersistentEntity`1">
+      <summary>
+            Should be implemented by persistent* classes the represents entities in the Domain Driven Design sense of the word.
+            
+            The vital distinction about Persistent Entities is that equality is defined by Identity, 
+            and as such they must guarantee that they have a non-default identity at all times.  
+            
+            * Classes that have a lifecycle longer than an application run. Often persisted in databases.
+            </summary>
+      <typeparam name="TKeyType" />
+    </member>
+    <member name="P:Void.IPersistentEntity`1.Id">
+      <summary>The unique identifier for this instance.</summary>
+    </member>
+    <member name="T:Void.Linq.Zipping">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Zipping.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})">
+      <summary>
+            Projects two sequences into a single sequence in which each value is the result
+            of calling <paramref name="selector" /> on the two instances in <paramref name="first" /> and 
+            <paramref name="second" /> that are at that index.
+            
+            The returned sequence will be the length of the shorter of the two sequences if 
+            they are uneven in length.
+            </summary>
+    </member>
+    <member name="M:Void.Linq.Zipping.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+      <summary>
+            Projects two sequences into a single sequence in which each value is a <see cref="T:Void.Linq.Zipping.Pair`2" /> 
+            containing the two instances in <paramref name="first" /> and <paramref name="second" /> that are at that index.
+            
+            The returned sequence will be the length of the shorter of the two sequences if 
+            they are uneven in length.
+            </summary>
+    </member>
+    <member name="T:Void.Linq.Zipping.Pair`2">
+      <summary>
+            A simple class that represents the pairing of two instances of the same type:
+            <see cref="P:Void.Linq.Zipping.Pair`2.First" /> and <see cref="P:Void.Linq.Zipping.Pair`2.Second" /></summary>
+    </member>
+    <member name="M:Void.Linq.Zipping.Pair`2.#ctor(`0,`1)">
+      <summary>Constructs a pair.</summary>
+    </member>
+    <member name="M:Void.Linq.Zipping.Pair`2.ToString">
+      <summary>
+        <see cref="M:System.Object.ToString" />
+      </summary>
+      <ensures inheritedFrom="M:System.Object.ToString" inheritedFromTypeName="Object">Contract.Result&lt;string&gt;() != null</ensures>
+    </member>
+    <member name="P:Void.Linq.Zipping.Pair`2.First">
+      <summary>The first instance in the pair.</summary>
+    </member>
+    <member name="P:Void.Linq.Zipping.Pair`2.Second">
+      <summary>The second instance in the pair.</summary>
+    </member>
+    <member name="T:Void.Wrappers.WrapperExtensions">
+      <summary />
+    </member>
+    <member name="M:Void.Wrappers.WrapperExtensions.Unwrap``1(System.Collections.Generic.IEnumerable{Void.Wrappers.IWrapper{``0}})">
+      <summary>
+            Given a sequence of <see cref="T:Void.Wrappers.IWrapper`1" /> returns a sequence containing the wrapped T values.
+            </summary>
+    </member>
+    <member name="T:Void.Linq.Seq">
+      <summary />
+    </member>
+    <member name="M:Void.Linq.Seq.Create``1(``0[])">
+      <summary>
+            Creates an enumerable consisting of the passed parameter values is order.
+            </summary>
+      <typeparam name="T" />
+      <param name="values" />
+      <returns />
+    </member>
+    <member name="T:Void.Linq.IFilter`1">
+      <summary>
+            Implementing this interface enables you to  use the existing extensionmethods 
+            
+            <see cref="M:Void.Linq.Filter.Where``1(System.Collections.Generic.IEnumerable{``0},Void.Linq.IFilter{``0})" />
+            and <see cref="M:Void.Linq.Filter.Where``1(System.Linq.IQueryable{``0},Void.Linq.IFilter{``0})" />
+            
+            This makes your implementing class as easy to use with linq as any simple predicate.
+            
+            A typical usage would be to implement this interface in a class that 
+            represents a search of some sort, enabling it to be used freely and easily in where clauses.
+            
+            </summary>
+      <typeparam name="T" />
+    </member>
+    <member name="P:Void.Linq.IFilter`1.Filters">
+      <summary>
+            Implementers should return the predicates that they wish to filter 
+            the sequence by.
+            </summary>
+    </member>
+    <member name="P:Void.Linq.FilterContract`1.Filters">
+      <summary />
+    </member>
+    <member name="T:Void.PersistentEntity`1">
+      <summary>
+            Simple base class for Entities that ensures a correct identity based <see cref="M:System.Object.Equals(System.Object)" />, <see cref="M:System.Object.GetHashCode" />, and <see cref="T:System.IEquatable`1" />.
+            
+            This class uses <see cref="T:System.Guid" />s as Ids because it is the only built in .Net type the developers are
+            avare of which can, in practice, guarantee for a system that an PersistentEntity will have a globally unique immutable identity 
+            from the moment of instantiation and through any number of persisting-loading cycles. That in turn is an 
+            absolute requirement for a correct implementation of <see cref="M:System.Object.Equals(System.Object)" />, 
+            <see cref="M:System.Object.GetHashCode" />, and <see cref="T:System.IEquatable`1" />.
+            </summary>
+    </member>
+    <member name="M:Void.PersistentEntity`1.#ctor">
+      <summary>
+            Creates a new instance with an automatically generated Id
+            </summary>
+    </member>
+    <member name="M:Void.PersistentEntity`1.Equals(`0)">
+      <summary>
+            Implements equals using persistent reference semantics.
+            If two instances have the same Id, Equals will return true.
+            </summary>
+    </member>
+    <member name="M:Void.PersistentEntity`1.Equals(System.Object)">
+      <summary>
+            Implements equals using persistent reference semantics.
+            If two instances have the same Id, Equals will return true.
+            </summary>
+    </member>
+    <member name="M:Void.PersistentEntity`1.GetHashCode">
+      <summary>Implements: <see cref="M:System.Object.GetHashCode" /></summary>
+    </member>
+    <member name="P:Void.PersistentEntity`1.Id">
+      <summary>Implements: <see cref="P:Void.IPersistentEntity`1.Id" /></summary>
+    </member>
+  </members>
+</doc>

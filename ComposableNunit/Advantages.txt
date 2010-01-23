@@ -1,0 +1,7 @@
+﻿Composability
+	Can use own constraints completely transparently with built in
+
+Type safety:
+	No ambiguity or testing types when creating new constraints
+	
+Collections give sane "But was" messages
