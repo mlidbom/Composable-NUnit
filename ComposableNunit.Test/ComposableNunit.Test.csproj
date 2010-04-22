@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="ConstraintExpressionConstraints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Time.cs" />
     <Compile Include="TestIt.cs" />
+    <Compile Include="TimeConstraints.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComposableNunit\ComposableNunit.csproj">

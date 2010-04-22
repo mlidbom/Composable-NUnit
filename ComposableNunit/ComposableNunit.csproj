@@ -51,15 +51,15 @@
   <ItemGroup>
     <Compile Include="BooleanCombinators.cs" />
     <Compile Include="Constraint.cs" />
-    <Compile Include="ConstraintBootStrapperOnIEnumerable.cs" />
     <Compile Include="ConstraintExpression.cs" />
     <Compile Include="ConstraintExpressionExtensions.cs" />
     <Compile Include="ConstraintsOnIComparable.cs" />
     <Compile Include="ConstraintsOnIEnumerable.cs" />
     <Compile Include="ConstraintsOnString.cs" />
+    <Compile Include="Continuations.cs" />
     <Compile Include="Expect.cs" />
     <Compile Include="ConstraintsOnObject.cs" />
-    <Compile Include="ConstraintBootstrapperOnObject.cs" />
+    <Compile Include="ConstraintExpressionBootStrapper.cs" />
     <Compile Include="EnumerableItemConstraintExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelationShipConstraint.cs" />
